@@ -1,5 +1,7 @@
 kernelsu-objs := core/init.o
 
+kernelsu-objs += compat/jailbreak.o compat/kdp.o compat/defex.o compat/rkp.o
+
 kernelsu-objs += feature/kernel_umount.o
 kernelsu-objs += feature/module_blacklist.o
 kernelsu-objs += feature/sulog.o
@@ -11,6 +13,7 @@ kernelsu-objs += hook/syscall_event_bridge.o
 kernelsu-objs += hook/syscall_hook_manager.o
 kernelsu-objs += hook/tp_marker.o
 ifeq ($(CONFIG_ARM64),y)
+kernelsu-objs += compat/rkp_stubs.o
 kernelsu-objs += hook/arm64/patch_memory.o
 kernelsu-objs += hook/arm64/syscall_hook.o
 else ifeq ($(CONFIG_X86_64),y)
@@ -183,8 +186,8 @@ KSU_PACKAGE_NAME ?= me.weishu.kernelsu
 else
 KSU_PACKAGE_NAME ?= me.weishu.kernelsu.pr
 endif
-KSU_EXPECTED_SIZE ?= 0x033b
-KSU_EXPECTED_HASH ?= c371061b19d8c7d7d6133c6a9bafe198fa944e50c1b31c9d8daa8d7f1fc2d2d6
+KSU_EXPECTED_SIZE ?= 0x0339
+KSU_EXPECTED_HASH ?= 0ffba31140cd36d287b9604b7c105b804ad71a1b2cf9b0bce43f2f017cbb0726
 
 $(info -- KernelSU Manager package name: $(KSU_PACKAGE_NAME))
 $(info -- KernelSU Manager signature size: $(KSU_EXPECTED_SIZE))

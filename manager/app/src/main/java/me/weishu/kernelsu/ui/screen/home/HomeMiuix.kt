@@ -171,10 +171,6 @@ fun HomePagerMiuix(
                             systemInfo = state.systemInfo,
                             modifier = Modifier.fillMaxWidth(),
                         )
-                        SupportLinks(
-                            onOpenUrl = actions.onOpenUrl,
-                            modifier = Modifier.fillMaxWidth(),
-                        )
                         Spacer(
                             Modifier.height(
                                 bottomInnerPadding + if (!Natives.isFullFeatured())
@@ -434,43 +430,6 @@ private fun StatusCard(
 }
 
 @Composable
-private fun SupportLinks(
-    onOpenUrl: (String) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val learnMoreUrl = stringResource(R.string.home_learn_kernelsu_url)
-
-    Card(modifier = modifier) {
-        ArrowPreference(
-            title = stringResource(R.string.home_support_title),
-            summary = stringResource(R.string.home_support_content),
-            startAction = {
-                Icon(
-                    imageVector = Icons.Filled.VolunteerActivism,
-                    contentDescription = stringResource(R.string.home_support_title),
-                    modifier = Modifier.padding(end = 6.dp),
-                    tint = colorScheme.onBackground,
-                )
-            },
-            onClick = { onOpenUrl("https://patreon.com/weishu") },
-        )
-        ArrowPreference(
-            title = stringResource(R.string.home_learn_kernelsu),
-            summary = stringResource(R.string.home_click_to_learn_kernelsu),
-            startAction = {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.MenuBook,
-                    contentDescription = stringResource(R.string.home_learn_kernelsu),
-                    modifier = Modifier.padding(end = 6.dp),
-                    tint = colorScheme.onBackground,
-                )
-            },
-            onClick = { onOpenUrl(learnMoreUrl) },
-        )
-    }
-}
-
-@Composable
 private fun InfoCard(
     systemInfo: SystemInfo,
     modifier: Modifier = Modifier,
@@ -647,10 +606,6 @@ private fun HomeScreenPreviewContent(
             )
             InfoCard(
                 systemInfo = previewSystemInfo.copy(selinuxStatus = selinuxStatus),
-                modifier = Modifier.fillMaxWidth(),
-            )
-            SupportLinks(
-                onOpenUrl = {},
                 modifier = Modifier.fillMaxWidth(),
             )
         }

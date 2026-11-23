@@ -134,7 +134,6 @@ fun HomePagerMaterial(
                 actions = actions,
             )
             InfoCard(systemInfo = state.systemInfo)
-            SupportLinks(onOpenUrl = actions.onOpenUrl)
             Spacer(
                 Modifier.height(
                     bottomInnerPadding + if (!Natives.isFullFeatured())
@@ -356,39 +355,6 @@ private fun WarningCard(
 }
 
 @Composable
-private fun SupportLinks(
-    onOpenUrl: (String) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val learnMoreUrl = stringResource(R.string.home_learn_kernelsu_url)
-
-    SegmentedColumn(modifier = modifier.fillMaxWidth()) {
-        item {
-            SegmentedListItem(
-                onClick = { onOpenUrl("https://patreon.com/weishu") },
-                headlineContent = { Text(stringResource(R.string.home_support_title)) },
-                supportingContent = { Text(stringResource(R.string.home_support_content)) },
-                leadingContent = {
-                    Icon(Icons.Filled.VolunteerActivism, stringResource(R.string.home_support_title))
-                },
-                trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null) },
-            )
-        }
-        item {
-            SegmentedListItem(
-                onClick = { onOpenUrl(learnMoreUrl) },
-                headlineContent = { Text(stringResource(R.string.home_learn_kernelsu)) },
-                supportingContent = { Text(stringResource(R.string.home_click_to_learn_kernelsu)) },
-                leadingContent = {
-                    Icon(Icons.AutoMirrored.Filled.MenuBook, stringResource(R.string.home_learn_kernelsu))
-                },
-                trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null) },
-            )
-        }
-    }
-}
-
-@Composable
 private fun InfoCard(
     systemInfo: SystemInfo,
     modifier: Modifier = Modifier,
@@ -552,7 +518,6 @@ private fun HomeScreenPreviewContent(
                 actions = actions
             )
             InfoCard(previewSystemInfo.copy(selinuxStatus = selinuxStatus))
-            SupportLinks(onOpenUrl = {})
         }
     }
 }

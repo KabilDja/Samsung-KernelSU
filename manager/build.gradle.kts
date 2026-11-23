@@ -31,5 +31,6 @@ fun getVersionCode(): Int {
 }
 
 fun getVersionName(): String {
-    return getGitDescribe()
+    // Fork branding: fixed display version shown in About/settings instead of git describe.
+    return "Samsung v1.1"
 }
